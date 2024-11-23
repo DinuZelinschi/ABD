@@ -9,14 +9,14 @@ proiectTW
 3. Beneficii: simplifica procesul de înregistrare a prezenței, accesibilitate pe orice dispozitiv, export de date, vizualizare prezență în timp real
 
 # Specificații
-1.Funcționalități:
--Organizatorii vor putea crea un eveniment nou, grupuri de evenimente repetate.
--Starea evenenimentului se va schimba în funcție de desfășurarea evenimentului: CLOSED(inainte de inceperea/dupa finalizarea evenimentului), OPEN(în timpul evenimentului).
--Când se creează evenimentul se generează un cod de acces QR/text.
--Participanții vor scana/introduce codul pentru a-și marca prezența.
--Organizatorul poate vedea lista de participanți prezenți și o poate descărca în format CSV/XLSX
-2.Tehnologii
--React.js, React Router
--Node.js, Express
+1. Funcționalități:
+- Organizatorii vor putea crea un eveniment nou, grupuri de evenimente repetate.
+- Starea evenenimentului se va schimba în funcție de desfășurarea evenimentului: CLOSED(inainte de inceperea/dupa finalizarea evenimentului), OPEN(în timpul evenimentului).
+- Când se creează evenimentul se generează un cod de acces QR/text.
+- Participanții vor scana/introduce codul pentru a-și marca prezența.
+- Organizatorul poate vedea lista de participanți prezenți și o poate descărca în format CSV/XLSX
+2. Tehnologii
+- React.js, React Router
+- Node.js, Express
 
 
