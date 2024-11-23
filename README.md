@@ -1,5 +1,5 @@
 # ABD
-proiectTW
+ProiectTW
 
 # Descrierea proiectului
 1. Scop: dezvoltarea unei aplicații web care permite organizatorilor de evenimente să monitorizeze prezența participanților printr-un sistem de coduri de acces, care pot fi scanate sau introduse manual de participanți
