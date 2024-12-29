@@ -1,8 +1,22 @@
 const Participant = require('../models/participant.js');
+const db = require('../config/bazaDeDate.js');
+
+const getAllParticipanti = (req, res) => {
+  const sql = 'SELECT * FROM participanti';
+  db.all(sql, [], (err, rows) => {
+    if (err) {
+      console.error('Eroare la preluarea participanților:', err);
+      res.status(500).json({ message: 'Eroare la preluarea participanților.' });
+    } else {
+      res.status(200).json(rows);
+    }
+  });
+};
+
 
 const adaugareParticipant = (req, res) => {
-  const { eveniment_id, nume_particiant } = req.body;
-  Participant.adaugareParticipant(eveniment_id, nume_particiant, (err) => {
+  const { eveniment_id, nume_participant } = req.body;
+  Participant.adaugareParticipant(eveniment_id, nume_participant, (err) => {
     if (err) {
       res.status(500).json({ message: 'Eroare la adaugarea participantului.' });
     } else {
@@ -13,13 +27,14 @@ const adaugareParticipant = (req, res) => {
 
 const getParticipantiDupaEveniment = (req, res) => {
   const evenimentId = req.params.eveniment_id;
-  Participant.getParticipantsByEvent(evenimentId, (err, participanti) => {
+  Participant.getParticipantiDupaEveniment(evenimentId, (err, participanti) => {
     if (err) {
-      res.status(500).json({ message: 'Eoare la preluarea participantilor.' });
+      console.error("Eroare la preluarea participanților:", err);
+      res.status(500).json({ message: 'Eroare la preluarea participanților.' });
     } else {
       res.status(200).json(participanti);
     }
   });
 };
 
-module.exports = { adaugareParticipant, getParticipantiDupaEveniment };
+module.exports = { adaugareParticipant, getParticipantiDupaEveniment, getAllParticipanti };

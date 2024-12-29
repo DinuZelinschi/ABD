@@ -16,6 +16,7 @@ app.use(cors({
 }));
 app.use(bodyParser.json()); 
 
+app.use(express.json());
 app.use('/api/autentificare', autentificareRoutes);
 app.use('/api/evenimente', evenimentRoutes);
 app.use('/api/participanti', participantRoutes);
