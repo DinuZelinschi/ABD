@@ -1,5 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./bd/database.sqlite');
+const path = require('path');
+const db = new sqlite3.Database(path.join(__dirname, '../bd/database.sqlite'));
 
 //crearea tabelelor
 const createTables = () => {
@@ -27,7 +28,7 @@ const createTables = () => {
         inceput TEXT NOT NULL,
         sfarsit TEXT NOT NULL,
         cod TEXT NOT NULL,
-        status TEXT NOT NULL
+        status TEXT NOT NULL DEFAULT 'CLOSED'
       );
     `, (err) => {
       if (err) {

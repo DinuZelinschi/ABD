@@ -8,8 +8,22 @@ const participantRoutes = require('./routes/participantRoutes.js');
 const qrRoutes = require('./routes/qrRoutes.js');
 const exportRoutes = require('./routes/exportRoutes.js');
 const app = express();
+const cron = require('node-cron');
+const { actualizareStatusEvenimente } = require('./controllers/evenimentController');
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001; 
+
+// Rulează actualizarea statusului evenimentelor la fiecare minut
+cron.schedule('* * * * *', () => {
+  console.log('Se rulează actualizarea stării evenimentelor...');
+  actualizareStatusEvenimente((result) => {
+    if (result.success) {
+      console.log(result.message);
+    } else {
+      console.error('Eroare în cron job:', result.error);
+    }
+  });
+});
 
 app.use(cors({
   origin: 'http://127.0.0.1:5500'
