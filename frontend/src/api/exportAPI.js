@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // URL-ul pentru API-ul de backend
-const API_URL = 'http://127.0.0.1:3001/api'; // Asigură-te că URL-ul e corect, în funcție de backend
+const API_URL = 'http://192.168.31.149:3001/api'; // Asigură-te că URL-ul e corect, în funcție de backend
 
 // Funcție pentru exportul participantilor in format CSV
 export const exportCSV = async (evenimentId, token) => {

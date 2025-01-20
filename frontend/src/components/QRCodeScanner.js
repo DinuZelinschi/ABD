@@ -1,36 +1,75 @@
 import React, { useState } from 'react';
-import { Button, Typography } from '@mui/material';
-import { generateQRCode } from '../api/qrAPI'; // Importă funcția pentru generare QR code
+import { Button, TextField, Typography } from '@mui/material';
+import QrScanner from 'react-qr-scanner'; // npm install react-qr-scanner
+import axios from 'axios';
 
-const GenerateQRCodeButton = ({ token }) => {
-  const [qrCodeData, setQrCodeData] = useState(null);
-  const [error, setError] = useState(null);
+const QRCodeScannerComponent = () => {
+  const [scanResult, setScanResult] = useState('');
+  const [manualCod, setManualCod] = useState('');
+  const [numeParticipant, setNumeParticipant] = useState('');
+  const [message, setMessage] = useState('');
+  const [isCameraSupported] = useState(
+    !!navigator.mediaDevices?.getUserMedia
+  );
 
-  const handleGenerateQRCode = async () => {
+  const handleScan = (data) => {
+    if (data) {
+      setScanResult(data.text);
+    }
+  };
+
+  const handleError = (err) => {
+    console.error('Eroare la scanare QR:', err);
+  };
+
+  const handleCheckIn = async (codAcces) => {
     try {
-      const data = 'Your data here'; // Poți schimba asta cu datele pe care vrei să le encodezi în QR
-      const qrCode = await generateQRCode(data, token);
-      setQrCodeData(qrCode); // Salvează codul QR generat
+      const response = await axios.post('http://192.168.31.149:3001/api/participanti/checkin', {
+        codAcces,
+        nume_participant: numeParticipant,
+      });
+      setMessage(response.data.message);
     } catch (err) {
-      setError('Failed to generate QR code');
-      console.error(err);
+      setMessage(err.response?.data?.message || 'Eroare la check-in.');
     }
   };
 
   return (
     <div>
-      <Button variant="contained" onClick={handleGenerateQRCode}>
-        Generate QR Code
-      </Button>
-      {qrCodeData && (
-        <div>
-          <Typography variant="body1">Generated QR Code:</Typography>
-          <img src={`data:image/png;base64,${qrCodeData}`} alt="QR Code" />
-        </div>
+      <Typography variant="h5">Scanează Codul QR sau Introdu Manual Codul</Typography>
+
+      {isCameraSupported ? (
+        <QrScanner delay={300} onError={handleError} onScan={handleScan} style={{ width: '300px' }} />
+      ) : (
+        <Typography color="error">
+          Camera nu este suportată pe acest browser. Te rugăm să introduci codul manual.
+        </Typography>
       )}
-      {error && <Typography variant="body2" color="error">{error}</Typography>}
+
+      <Typography variant="body2">Cod detectat: {scanResult}</Typography>
+
+      <TextField
+        label="Cod Manual"
+        value={manualCod}
+        onChange={(e) => setManualCod(e.target.value)}
+        fullWidth
+        style={{ margin: '10px 0' }}
+      />
+      <TextField
+        label="Nume Participant"
+        value={numeParticipant}
+        onChange={(e) => setNumeParticipant(e.target.value)}
+        fullWidth
+        style={{ margin: '10px 0' }}
+      />
+
+      <Button variant="contained" onClick={() => handleCheckIn(scanResult || manualCod)}>
+        Confirmă Prezența
+      </Button>
+
+      {message && <Typography color="primary">{message}</Typography>}
     </div>
   );
 };
 
-export default GenerateQRCodeButton;
+export default QRCodeScannerComponent;

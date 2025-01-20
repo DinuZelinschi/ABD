@@ -1,31 +1,67 @@
-// src/components/EventDetails.js
-import React from 'react';
-import { Card, CardContent, Typography, Button } from '@mui/material';
+import React, { useState } from 'react';
+import { Button, Typography } from '@mui/material';
+import axios from 'axios';
 
 const EventDetails = ({ eveniment }) => {
-  const handleGenerareQR =async () => {
-    // Logic for updating event status
+  const [qrCodeData, setQrCodeData] = useState(null);
+
+  if (!eveniment) {
+    return (
+      <Typography variant="h6" color="error">
+        Eroare: Nu s-a găsit niciun eveniment.
+      </Typography>
+    );
+  }
+
+  const handleGenerateQRCode = async () => {
+    try {
+      const response = await axios.post('http://192.168.31.149:3001/api/qr', {
+        codAcces: eveniment.cod,
+      });
+      setQrCodeData(response.data.qrImagine);
+    } catch (err) {
+      console.error('Eroare la generarea QR Code:', err);
+    }
   };
 
-  const handleSaveCSV=()=>{
-    //logica pt salvare csv
+  const handleExportCSV = async (evenimentId) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/api/export/csv/${evenimentId}`,
+        {
+          responseType: 'blob', // primește fișierul
+        }
+      );
+      const blob = new Blob([response.data], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `participanti_eveniment_${evenimentId}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (error) {
+      console.error('Eroare la exportul CSV:', error);
+    }
   };
 
   return (
-    <Card>
-      <CardContent>
-        <Typography variant="h6">{eveniment.denumire}</Typography>
-        <Typography variant="body2">{eveniment.descriere}</Typography>
-        <Typography variant="body2">Start: {eveniment.inceput}</Typography>
-        <Typography variant="body2">End: {eveniment.sfarsit}</Typography>
-        <Typography variant='body2'>{eveniment.status}</Typography>
-        <Button variant="contained" onClick={handleGenerareQR}>
-          QR code
-        </Button>
-        <span style={{marginRight:'5px'}}></span>
-        <Button variant="contained" onClick={handleSaveCSV}>Save CSV</Button>
-      </CardContent>
-    </Card>
+    <div>
+      <Typography variant="h6">{eveniment.denumire}</Typography>
+      <Typography variant="body2">{eveniment.descriere}</Typography>
+      <Button variant="contained" onClick={handleGenerateQRCode}>
+        Generare QR Code
+      </Button>
+      {qrCodeData && <img src={qrCodeData} alt="QR Code" />}
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => handleExportCSV(eveniment.id)}
+        style={{ marginTop: '10px' }}
+      >
+        Exportă Participanți (CSV)
+      </Button>
+    </div>
   );
 };
 

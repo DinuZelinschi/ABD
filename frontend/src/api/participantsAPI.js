@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://127.0.0.1:3001/api/participanti';
+const API_URL = 'http://192.168.31.149:3001/api/participanti';
 
 // Funcție pentru a adăuga un participant
 export const addParticipant = async (evenimentId, numeParticipant, token) => {

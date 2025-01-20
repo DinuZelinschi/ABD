@@ -5,6 +5,7 @@ const creareEveniment = (denumire, descriere, inceput, sfarsit, cod, callback) =
   db.run(sql, [denumire, descriere, inceput, sfarsit, cod], callback);
 };
 
+
 const getAllEvenimente = (callback) => {
   const sql = 'SELECT * FROM evenimente';
   db.all(sql, callback);

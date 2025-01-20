@@ -43,6 +43,7 @@ const createTables = () => {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         eveniment_id INTEGER NOT NULL,
         nume_participant TEXT NOT NULL,
+        created_at DATETIME NOT NULL DEFAULT (datetime('now','localtime')),
         FOREIGN KEY (eveniment_id) REFERENCES evenimente(id)
       );
     `, (err) => {
@@ -52,6 +53,7 @@ const createTables = () => {
         console.log("Tabela 'participanti' a fost creata sau exista deja.");
       }
     });
+    
   });
 };
 

@@ -8,7 +8,7 @@ exports.exportCSV = async (req, res) => {
   const evenimentId = req.params.eveniment_id;
   try {
     db.all(
-      'SELECT * FROM participanti WHERE eveniment_id = ?',
+      'SELECT id, eveniment_id, nume_participant, created_at FROM participanti WHERE eveniment_id = ?',
       [evenimentId],
       (err, participanti) => {
         if (err) {
