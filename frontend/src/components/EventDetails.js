@@ -15,7 +15,7 @@ const EventDetails = ({ eveniment }) => {
 
   const handleGenerateQRCode = async () => {
     try {
-      const response = await axios.post('http://192.168.31.149:3001/api/qr', {
+      const response = await axios.post('http://localhost:3001/api/qr', {
         codAcces: eveniment.cod,
       });
       setQrCodeData(response.data.qrImagine);

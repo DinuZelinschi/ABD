@@ -24,7 +24,7 @@ const QRCodeScannerComponent = () => {
 
   const handleCheckIn = async (codAcces) => {
     try {
-      const response = await axios.post('http://192.168.31.149:3001/api/participanti/checkin', {
+      const response = await axios.post('http://localhost/api/participanti/checkin', {
         codAcces,
         nume_participant: numeParticipant,
       });

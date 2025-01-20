@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://192.168.31.149:3001/api/evenimente';
+const API_URL = 'http://localhost:3001/api/evenimente';
 
 // Funcție pentru obținerea evenimentelor
 export const getEvents = async (token) => {

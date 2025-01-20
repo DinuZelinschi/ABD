@@ -1,7 +1,7 @@
 // src/api/authAPI.js
 import axios from 'axios';
 
-const API_URL = 'http://192.168.31.149:3001/api/autentificare';
+const API_URL = 'http://localhost:3001/api/autentificare';
 
 // Funcție pentru login și creare cont
 export const login = async (username, parola) => {

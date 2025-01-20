@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://192.168.31.149:3001/api/qr';
+const API_URL = 'http://localhost:3001/api/qr';
 
 // Funcție pentru generarea unui QR code
 export const generateQRCode = async (data, token) => {
