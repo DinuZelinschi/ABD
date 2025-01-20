@@ -2,11 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Typography, Grid, Button } from '@mui/material'; 
 import { getEvents } from '../api/eventsAPI';
 import EventDetails from './EventDetails';
-<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom'; // Import pentru navigare
-=======
-import { useNavigate } from 'react-router-dom';//import pt navigare
->>>>>>> 526c1d07f0cd91fb53d1c31af4db4de1b64d6df3
 
 const Dashboard = () => {
   const [evenimente, setEvenimente] = useState([]);
@@ -21,7 +17,6 @@ const Dashboard = () => {
     fetchEvenimente();
   }, []);
 
-<<<<<<< HEAD
   const handleAddEvent = () => {
     navigate('/add-event'); // Navighează către pagina de adăugare eveniment
   };
@@ -29,11 +24,6 @@ const Dashboard = () => {
   const handleScanQR = () => {
     navigate('/scan-qr'); // Navighează către pagina Scan QR
   };
-=======
-  const handleAddEvent=()=>{
-    navigate('/add-event'); // Navighează către pagina de adăugare eveniment
-  }
->>>>>>> 526c1d07f0cd91fb53d1c31af4db4de1b64d6df3
 
   return (
     <Container>
