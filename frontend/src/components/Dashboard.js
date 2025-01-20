@@ -3,9 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { Container, Typography, Grid, Button } from '@mui/material'; 
 import { getEvents } from '../api/eventsAPI';
 import EventDetails from './EventDetails';
+import { useNavigate } from 'react-router-dom';//import pt navigare
 
 const Dashboard = () => {
   const [evenimente, setEvenimente] = useState([]);
+  const navigate = useNavigate(); // Hook-ul pentru navigare
 
   useEffect(() => {
     const fetchEvenimente = async () => {
@@ -17,7 +19,7 @@ const Dashboard = () => {
   }, []);
 
   const handleAddEvent=()=>{
-    
+    navigate('/add-event'); // Navighează către pagina de adăugare eveniment
   }
 
   return (
