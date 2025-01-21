@@ -2,9 +2,7 @@ const Eveniment = require('../models/eveniment.js');
 const db = require('../config/bazaDeDate.js');
 
 
-// Crearea unui eveniment nou
 const creareEveniment = (req, res) => {
-  // Adaugă 'cod' aici:
   const { denumire, descriere, inceput, sfarsit, cod } = req.body;
 
   Eveniment.creareEveniment(denumire, descriere, inceput, sfarsit, cod, (err) => {
@@ -14,7 +12,7 @@ const creareEveniment = (req, res) => {
     } else {
       res.status(200).json({ 
         message: 'Eveniment creat cu succes.',
-        cod // îl poți returna dacă vrei să-l vezi în front-end
+        cod 
       });
     }
   });
@@ -23,7 +21,6 @@ const creareEveniment = (req, res) => {
 
 
 
-// Preluarea tuturor evenimentelor
 const getAllEvenimente = (req, res) => {
   const sql = 'SELECT id, denumire, descriere, inceput, sfarsit, cod, status FROM evenimente';
   db.all(sql, [], (err, rows) => {
@@ -37,7 +34,6 @@ const getAllEvenimente = (req, res) => {
 };
 
 
-// Schimbarea stării evenimentului pe baza timpului curent
 const actualizareStatusEvenimente = (callback) => {
   const currentDateTime = new Date().toISOString().slice(0, 19).replace('T', ' '); // Format compatibil SQLite
 

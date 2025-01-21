@@ -36,22 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-.Dashboard {
-  padding: 20px;
-  background-color: #f4f4f4;
-}
-
-.QRCodeScanner {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.Button {
-  margin-top: 15px;
-  background-color: #61dafb;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-}

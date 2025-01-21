@@ -4,6 +4,6 @@ const router = express.Router();
 
 router.post('/create', creareEveniment);
 router.get('/', getAllEvenimente);
-router.put('/update-status', actualizareStatusEvenimente); // Rută pentru actualizare status
+router.put('/update-status', actualizareStatusEvenimente); 
 
 module.exports = router;

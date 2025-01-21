@@ -3,7 +3,6 @@ const ExcelJS = require('exceljs');
 const Participant = require('../models/participant.js');
 const db = require('../config/bazaDeDate.js'); 
 
-//exportul participantilor in format CSV
 exports.exportCSV = async (req, res) => {
   const evenimentId = req.params.eveniment_id;
   try {
@@ -30,7 +29,6 @@ exports.exportCSV = async (req, res) => {
 };
 
 
-//exportul participantilor in format XLSX
 exports.exportXLSX = async (req, res) => {
   const evenimentId = req.params.eveniment_id;
   try {

@@ -1,12 +1,9 @@
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./bd/database.sqlite'); // Asigură-te că calea către baza de date este corectă
+const db = new sqlite3.Database('./bd/database.sqlite'); 
 
 const cleanUpData = () => {
-  // Ștergem evenimentele de la id=2 în sus
   const sqlEvents = 'DELETE FROM evenimente WHERE id >= 2';
-  // Ștergem participanții de la id=2 în sus
   const sqlParts = 'DELETE FROM participanti WHERE id >= 2';
-  // Ștergem userii de la id=2 în sus
   const sqlUsers = 'DELETE FROM users WHERE id >= 2';
 
   db.serialize(() => {
@@ -37,7 +34,6 @@ const cleanUpData = () => {
   });
 };
 
-// Rulăm funcția principală dacă fișierul este executat direct
 if (require.main === module) {
   cleanUpData();
 }

@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-// URL-ul pentru API-ul de backend
-const API_URL = 'http://localhost:3001/api'; // Asigură-te că URL-ul e corect, în funcție de backend
+const API_URL = 'http://localhost:3001/api'; 
 
-// Funcție pentru exportul participantilor in format CSV
 export const exportCSV = async (evenimentId, token) => {
   try {
     const response = await axios.get(
@@ -12,11 +10,10 @@ export const exportCSV = async (evenimentId, token) => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-        responseType: 'blob', // Se cere ca răspuns un fișier
+        responseType: 'blob', 
       }
     );
 
-    // Creați un link de descărcare pentru fișierul CSV
     const link = document.createElement('a');
     link.href = URL.createObjectURL(response.data);
     link.download = `participanti_eveniment_${evenimentId}.csv`;
@@ -26,7 +23,6 @@ export const exportCSV = async (evenimentId, token) => {
   }
 };
 
-// Funcție pentru exportul participantilor in format XLSX
 export const exportXLSX = async (evenimentId, token) => {
   try {
     const response = await axios.get(
@@ -35,11 +31,10 @@ export const exportXLSX = async (evenimentId, token) => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-        responseType: 'blob', // Se cere ca răspuns un fișier
+        responseType: 'blob', 
       }
     );
 
-    // Creați un link de descărcare pentru fișierul XLSX
     const link = document.createElement('a');
     link.href = URL.createObjectURL(response.data);
     link.download = `participanti_eveniment_${evenimentId}.xlsx`;

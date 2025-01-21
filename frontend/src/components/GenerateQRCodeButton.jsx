@@ -1,4 +1,3 @@
-// src/components/GenerateQRCodeButton.js
 import React, { useState } from 'react';
 import { Button, Typography } from '@mui/material';
 import { generateQRCode } from '../api/qrAPI';
@@ -19,7 +18,7 @@ const GenerateQRCodeButton = ({ token, codAcces }) => {
   return (
     <div>
       <Button variant="contained" onClick={handleGenerateQRCode}>
-        Generare QR Code
+        Generare QR 
       </Button>
 
       {qrCodeData && (

@@ -1,12 +1,10 @@
 const express = require('express');
 const { logare } = require('../controllers/autentificareController.js');
-const { creareUser } = require('../models/user.js'); // Importă funcția creareUser din modelul user.js
+const { creareUser } = require('../models/user.js'); 
 const router = express.Router();
 
-// Rută pentru logare
 router.post('/login', logare);
 
-// Rută pentru adăugarea unui utilizator nou
 router.post('/adauga-utilizator', (req, res) => {
     const { username, parola, rol } = req.body;
 

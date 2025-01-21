@@ -13,7 +13,6 @@ const { actualizareStatusEvenimente } = require('./controllers/evenimentControll
 
 const PORT = process.env.PORT || 3001; 
 
-// Rulează actualizarea statusului evenimentelor la fiecare minut
 cron.schedule('* * * * *', () => {
   console.log('Se rulează actualizarea stării evenimentelor...');
   actualizareStatusEvenimente((result) => {
@@ -40,7 +39,6 @@ app.get('/', (req, res) => {
   res.send('Bine ai venit pe serverul nostru!');
 });
 
-//pornirea serverului
 app.listen(PORT, () => {
   console.log(`Serverul ruleaza pe portul http://127.0.0.1:${PORT}`);
 });

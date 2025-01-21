@@ -29,7 +29,7 @@ const EventDetails = ({ eveniment }) => {
       const response = await axios.get(
         `http://localhost:3001/api/export/csv/${evenimentId}`,
         {
-          responseType: 'blob', // primește fișierul
+          responseType: 'blob', // primeste fisierul
         }
       );
       const blob = new Blob([response.data], { type: 'text/csv' });
@@ -49,20 +49,75 @@ const EventDetails = ({ eveniment }) => {
     <div>
       <Typography variant="h6">{eveniment.denumire}</Typography>
       <Typography variant="body2">{eveniment.descriere}</Typography>
-      <Button variant="contained" onClick={handleGenerateQRCode}>
-        Generare QR Code
-      </Button>
-      {qrCodeData && <img src={qrCodeData} alt="QR Code" />}
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => handleExportCSV(eveniment.id)}
-        style={{ marginTop: '10px' }}
+  
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap', 
+          justifyContent: 'center', 
+          gap: '10px', 
+          marginTop: '10px', 
+          marginBottom: '10px'
+
+        }}
       >
-        Exportă Participanți (CSV)
-      </Button>
+        <Button
+          variant="contained"
+          onClick={handleGenerateQRCode}
+          sx={{
+            padding: '6px 24px',
+            fontSize: '0.9rem',
+            textTransform: 'none',
+            backgroundColor: '#5a0080',
+            borderRadius: '20px',
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+            '&:hover': {
+              backgroundColor: '#460066',
+            },
+          }}
+        >
+          Generare QR
+        </Button>
+  
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => handleExportCSV(eveniment.id)}
+          sx={{
+            padding: '6px 24px',
+            fontSize: '0.9rem',
+            textTransform: 'none',
+            backgroundColor: '#5a0080',
+            borderRadius: '20px',
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+            '&:hover': {
+              backgroundColor: '#460066',
+            },
+          }}
+        >
+          Participanți
+        </Button>
+      </div>
+  
+      {qrCodeData && (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: '10px',
+          }}
+        >
+          <img
+            src={qrCodeData}
+            alt="QR Code"
+            style={{ maxWidth: '100%', width: '150px', height: 'auto' }}
+          />
+        </div>
+      )}
     </div>
   );
+  
+  
 };
 
 export default EventDetails;

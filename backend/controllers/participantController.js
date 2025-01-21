@@ -1,6 +1,6 @@
-const db = require('../config/bazaDeDate.js'); // Config baza de date
+const db = require('../config/bazaDeDate.js'); 
 
-// Funcție pentru check-in participant
+// check-in participant
 const checkInParticipant = (req, res) => {
   const { codAcces, nume_participant } = req.body;
 
@@ -34,7 +34,6 @@ const checkInParticipant = (req, res) => {
   });
 };
 
-// getParticipantiDupaEveniment
 const getParticipantiDupaEveniment = (req, res) => {
   const { eveniment_id } = req.params;
   const sql = 'SELECT * FROM participanti WHERE eveniment_id = ?';
@@ -87,7 +86,6 @@ const alterTable = () => {
 };
 
 
-// Apelează funcția alterTable când serverul pornește
 alterTable();
 
 

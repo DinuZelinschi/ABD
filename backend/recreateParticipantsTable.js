@@ -1,10 +1,9 @@
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./bd/database.sqlite'); // Asigură-te că calea către baza de date este corectă
+const db = new sqlite3.Database('./bd/database.sqlite'); 
 
 
 const recreateParticipantsTable = () => {
     db.serialize(() => {
-      // Ștergem tabela `participanti` dacă există
       db.run('DROP TABLE IF EXISTS participanti', (err) => {
         if (err) {
           console.error('Eroare la ștergerea tabelei `participanti`:', err.message);
@@ -12,7 +11,6 @@ const recreateParticipantsTable = () => {
           console.log('Tabela `participanti` a fost ștearsă cu succes.');
         }
   
-        // Cream din nou tabela `participanti`
         db.run(`
           CREATE TABLE IF NOT EXISTS participanti (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32,6 +30,5 @@ const recreateParticipantsTable = () => {
     });
   };
   
-  // Apelează funcția pentru a recrea tabela
   recreateParticipantsTable();
   

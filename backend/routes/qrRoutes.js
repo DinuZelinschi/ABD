@@ -1,7 +1,7 @@
 const express = require('express');
-const { generateQRCode } = require('../controllers/qrController.js'); // Import corect
+const { generateQRCode } = require('../controllers/qrController.js'); 
 
 const router = express.Router();
-router.post('/', generateQRCode); // Definește ruta pentru generarea QR
+router.post('/', generateQRCode); 
 
 module.exports = router;
