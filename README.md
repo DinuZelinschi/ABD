@@ -10,7 +10,7 @@ Proiect Tehnologii Web
 
 # Specificații
 1. Funcționalități:
-- Organizatorii vor putea crea un eveniment nou
+- Organizatorii vor putea crea un eveniment nou.
 - Starea evenenimentului se va schimba în funcție de desfășurarea evenimentului: CLOSED(inainte de inceperea/dupa finalizarea evenimentului), OPEN(în timpul evenimentului).
 - Când se creează evenimentul se generează un cod de acces QR/text.
 - Participanții vor scana/introduce codul pentru a-și marca prezența.
